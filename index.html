@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>A11y Skills · Accessibility skills for your AI</title>
+	<meta name="description" content="Share accessibility skills for AI coding assistants, and build your own from WCAG 2.2, your weak spots and your documentation.">
+	<link rel="stylesheet" href="styles.css">
+	<script type="module" src="app.js"></script>
+</head>
+<body>
+	<a class="skip" href="#main">Skip to main content</a>
+
+	<header class="site-header">
+		<div class="wrap header-row">
+			<a class="brand" href="#top" aria-label="A11y Skills, home">
+				<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="15"/><circle class="fg" cx="16" cy="8.5" r="2.6"/><path class="fg-line" d="M8.5 12.5 16 14l7.5-1.5M16 14v5.5m0 0-3.5 7m3.5-7 3.5 7"/></svg>
+				<span>A11y Skills</span>
+			</a>
+			<nav aria-label="Main">
+				<ul>
+					<li><a href="#how">How it works</a></li>
+					<li><a href="#gallery">Gallery</a></li>
+					<li><a href="#build">Build a skill</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main id="main" tabindex="-1">
+		<section class="hero" id="top" aria-labelledby="hero-title">
+			<div class="wrap">
+				<p class="eyebrow">Skills for AI coding assistants</p>
+				<h1 id="hero-title">Teach your AI to build accessible, <em>the way your team does</em>.</h1>
+				<p class="lead">A generic accessibility skill makes your AI meet the minimum. A skill that knows your weak spots and your patterns makes every team build the same, better way.</p>
+				<p class="actions">
+					<a class="button primary" href="#build">Build your skill</a>
+					<a class="button" href="#gallery">Browse the gallery</a>
+				</p>
+			</div>
+		</section>
+
+		<section class="band" id="how" aria-labelledby="how-title">
+			<div class="wrap">
+				<h2 id="how-title">How it works</h2>
+				<p class="section-lead">Every skill made here joins three layers. The more of your own you add, the more your AI works like your team.</p>
+				<ol class="layers">
+					<li>
+						<span class="layer-n" aria-hidden="true">1</span>
+						<h3>The base</h3>
+						<p>All of WCAG 2.2 Level AA: 55 success criteria, each with what to check in code. Always included.</p>
+					</li>
+					<li>
+						<span class="layer-n" aria-hidden="true">2</span>
+						<h3>Your weak spots</h3>
+						<p>The criteria your audits keep failing. The skill puts them first and checks every one before it finishes.</p>
+					</li>
+					<li>
+						<span class="layer-n" aria-hidden="true">3</span>
+						<h3>Your patterns</h3>
+						<p>How your team solves each case, and links to your documentation. The AI follows them, so every screen is consistent.</p>
+					</li>
+				</ol>
+			</div>
+		</section>
+
+		<section id="gallery" aria-labelledby="gallery-title">
+			<div class="wrap">
+				<h2 id="gallery-title">Gallery</h2>
+				<p class="section-lead">Useful accessibility skills. Skills made on this site are plain text and run no code. Skills published elsewhere may include scripts: read them before you install them.</p>
+				<ul class="cards" id="gallery-list"></ul>
+				<p class="share">Know a good one? Add it to <code>data/skills.js</code> and open a pull request.</p>
+			</div>
+		</section>
+
+		<section class="band" id="build" aria-labelledby="build-title">
+			<div class="wrap">
+				<h2 id="build-title" tabindex="-1">Build a skill</h2>
+				<p class="section-lead">Three short steps. Nothing leaves your browser.</p>
+
+				<div class="builder">
+					<form id="builder" novalidate>
+						<fieldset class="step">
+							<legend><span class="step-n">1</span> About your team</legend>
+							<div class="field">
+								<label for="team">Team or product name</label>
+								<input id="team" name="team" type="text" autocomplete="organization" placeholder="For example, Acme">
+							</div>
+							<div class="field">
+								<label for="slug">Skill name</label>
+								<p class="hint" id="slug-hint">Lowercase letters, numbers and hyphens. It names the skill's folder.</p>
+								<input id="slug" name="slug" type="text" aria-describedby="slug-hint" spellcheck="false" autocapitalize="none">
+							</div>
+						</fieldset>
+
+						<fieldset class="step">
+							<legend><span class="step-n">2</span> Your weak spots</legend>
+							<p class="hint">Pick the success criteria your audits fail most. You can leave this empty.</p>
+							<div class="field">
+								<label for="paste">Paste criteria from an audit</label>
+								<p class="hint" id="paste-hint">For example: 1.4.3, 2.4.7 and 4.1.2. Any text works; numbers are picked out.</p>
+								<div class="inline">
+									<input id="paste" type="text" aria-describedby="paste-hint" spellcheck="false">
+									<button type="button" class="button" id="paste-apply">Select</button>
+								</div>
+							</div>
+							<div class="field">
+								<label for="filter">Filter criteria</label>
+								<input id="filter" type="search" placeholder="Number or words, like 1.4 or focus">
+							</div>
+							<p class="picked" id="picked" role="status">No weak spots selected.</p>
+							<div id="criteria"></div>
+						</fieldset>
+
+						<fieldset class="step">
+							<legend><span class="step-n">3</span> Your documentation</legend>
+							<div class="field">
+								<label for="patterns">Your patterns</label>
+								<p class="hint" id="patterns-hint">One per line. How your team solves a case, said as a rule.</p>
+								<textarea id="patterns" rows="5" aria-describedby="patterns-hint" placeholder="Icon-only buttons always have an aria-label and a tooltip with the same text.&#10;Dialogs use our Modal component, never a custom one."></textarea>
+							</div>
+							<div class="field">
+								<label for="links">Links to your guidelines</label>
+								<p class="hint" id="links-hint">One per line, as Title | URL.</p>
+								<textarea id="links" rows="3" aria-describedby="links-hint" spellcheck="false" placeholder="Accessibility guidelines | https://example.com/a11y"></textarea>
+							</div>
+						</fieldset>
+					</form>
+
+					<div class="output" role="region" aria-labelledby="output-title">
+						<div class="output-head">
+							<h3 id="output-title">Your skill</h3>
+							<p class="file" id="file-path"></p>
+						</div>
+						<pre class="preview" tabindex="0" role="region" aria-label="SKILL.md preview"><code id="preview"></code></pre>
+						<div class="output-actions">
+							<button type="button" class="button primary" id="download">Download SKILL.md</button>
+							<button type="button" class="button" id="copy">Copy</button>
+						</div>
+						<p class="toast" id="toast" role="status"></p>
+						<details class="install">
+							<summary>How to install it</summary>
+							<p>Save the file as <code id="install-path"></code> in your project, or in <code>~/.claude/skills</code> to use it everywhere. Claude Code picks it up the next time it starts. Other assistants that read <code>SKILL.md</code> files work the same way.</p>
+						</details>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wrap">
+			<p>Based on <a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a>. A skill helps; it does not replace testing with real people and assistive technology.</p>
+		</div>
+	</footer>
+</body>
+</html>
