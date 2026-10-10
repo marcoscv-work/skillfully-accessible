@@ -15,6 +15,7 @@
 	--accent-ink: #ffffff;
 	--accent-soft: #dcebe6;
 	--accent-hover: #0a5751;
+	--logo-mid: #9cc9bf;
 	--code-bg: #ece8dd;
 	--shadow: 0 1px 2px rgb(60 50 30 / 0.06), 0 8px 24px -12px rgb(60 50 30 / 0.18);
 
@@ -49,6 +50,7 @@
 		--accent-ink: #0f1f1c;
 		--accent-soft: #1d322e;
 		--accent-hover: #93ddd2;
+		--logo-mid: #2f6a61;
 		--code-bg: #0e0e0c;
 		--shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 10px 28px -14px rgb(0 0 0 / 0.7);
 	}
@@ -66,6 +68,7 @@
 	--accent-ink: #0f1f1c;
 	--accent-soft: #1d322e;
 	--accent-hover: #93ddd2;
+	--logo-mid: #2f6a61;
 	--code-bg: #0e0e0c;
 	--shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 10px 28px -14px rgb(0 0 0 / 0.7);
 }
@@ -151,9 +154,9 @@ code { font-size: 0.9em; overflow-wrap: anywhere; }
 
 .brand { display: inline-flex; gap: var(--space-3); align-items: center; color: var(--ink); font-size: 1.1rem; font-weight: 800; letter-spacing: -0.01em; text-decoration: none; }
 .brand svg { width: 2rem; height: 2rem; }
-.brand svg circle:first-child { fill: var(--accent); }
-.brand .fg { fill: var(--accent-ink); }
-.brand .fg-line { fill: none; stroke: var(--accent-ink); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.brand .logo-a { fill: var(--accent); }
+.brand .logo-b { fill: var(--logo-mid); }
+.brand .logo-ink { fill: var(--ink); }
 
 nav ul { display: flex; flex-wrap: wrap; gap: 0 var(--space-6); margin: 0; padding: 0; list-style: none; }
 nav a {
@@ -170,25 +173,25 @@ nav a[aria-current] { border-bottom-color: var(--accent); color: var(--ink); }
 
 .header-tools { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); align-items: center; }
 
-/* Theme switch: three named options, the current one pressed. */
+/* Theme switch: small and quiet, so it never competes with the menu. Targets stay above 24 px. */
 
-.theme { display: inline-flex; padding: 3px; border: 1px solid var(--field-line); border-radius: 999px; }
+.theme { display: inline-flex; padding: 2px; border: 1px solid var(--line); border-radius: 999px; }
 .theme button {
-	min-width: 2.75rem;
-	min-height: 2.25rem;
-	padding: 0.2rem 0.75rem;
+	min-width: 2.5rem;
+	min-height: 1.625rem;
+	padding: 0.1rem 0.6rem;
 	border: 0;
 	border-radius: 999px;
 	background: transparent;
 	color: var(--muted);
 	font: inherit;
-	font-size: 0.88rem;
-	font-weight: 700;
+	font-size: 0.8rem;
+	font-weight: 400;
 	cursor: pointer;
 	transition: background-color 160ms var(--ease), color 160ms var(--ease);
 }
 .theme button:hover { color: var(--ink); }
-.theme button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.theme button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px var(--field-line); }
 
 /* Small screens: brand and theme on one line, the menu below. */
 
@@ -205,7 +208,7 @@ nav a[aria-current] { border-bottom-color: var(--accent); color: var(--ink); }
 @media (max-width: 400px) {
 	.brand { font-size: 1rem; }
 	.brand svg { width: 1.75rem; height: 1.75rem; }
-	.theme button { min-width: 0; padding-inline: 0.55rem; font-size: 0.82rem; }
+	.theme button { min-width: 0; padding-inline: 0.5rem; }
 }
 
 /* ---------------------------------------------------------------- hero */
