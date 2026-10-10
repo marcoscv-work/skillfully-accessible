@@ -1,4 +1,4 @@
-# A11y Skills
+# Accessibility Skills
 
 Accessibility skills for AI coding assistants, and a builder to make your own.
 
