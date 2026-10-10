@@ -23,6 +23,7 @@ function renderGallery() {
 
 		item.className = 'card';
 		item.dataset.tags = skill.tags.join('|');
+		item.dataset.search = [skill.name, skill.author, skill.description, ...skill.tags].join(' ').toLowerCase();
 		heading.textContent = skill.name;
 		badge.className = 'badge';
 		badge.textContent = SOURCE_LABEL[skill.source];
@@ -114,16 +115,22 @@ function renderFilters() {
 }
 
 function filterGallery() {
+	const query = $('gallery-search').value.trim().toLowerCase();
 	let shown = 0;
 
 	for (const card of document.querySelectorAll('#gallery-list .card')) {
-		const match = activeTag === 'All' || card.dataset.tags.split('|').includes(activeTag);
+		const words = query.split(/\s+/).filter(Boolean);
+		const match = (activeTag === 'All' || card.dataset.tags.split('|').includes(activeTag)) && words.every((word) => card.dataset.search.includes(word));
 
 		card.hidden = !match;
 		shown += match ? 1 : 0;
 	}
 
-	$('gallery-count').textContent = activeTag === 'All' ? `${shown} skills.` : `${shown} skill${shown === 1 ? '' : 's'} tagged ${activeTag}.`;
+	const what = `${shown} skill${shown === 1 ? '' : 's'}`;
+	const tagged = activeTag === 'All' ? '' : ` tagged ${activeTag}`;
+	const matching = query ? ` matching "${$('gallery-search').value.trim()}"` : '';
+
+	$('gallery-count').textContent = shown || query || activeTag !== 'All' ? `${what}${tagged}${matching}.` : 'No skills yet.';
 }
 
 // ---------------------------------------------------------------- criteria
@@ -481,6 +488,7 @@ $('slug').addEventListener('change', () => {
 $('patterns').addEventListener('input', update);
 $('links').addEventListener('input', update);
 $('filter').addEventListener('input', applyFilter);
+$('gallery-search').addEventListener('input', filterGallery);
 $('paste-apply').addEventListener('click', applyPaste);
 $('paste').addEventListener('keydown', (event) => {
 	if (event.key === 'Enter') {
