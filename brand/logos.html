@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Logo proposals · Accessibility Skills</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700;800&amp;display=swap">
+	<style>
+		:root { --font: "Atkinson Hyperlegible Next", system-ui, sans-serif; }
+		body { margin: 0; padding: 2.5rem; background: #e7e3d8; color: #1b1a17; font: 1rem/1.5 var(--font); }
+		h1 { margin: 0 0 0.25rem; font-size: 2rem; }
+		.intro { max-width: 70ch; margin: 0 0 2rem; color: #57534a; }
+		.proposal { margin: 0 0 2rem; padding: 1.75rem; border-radius: 16px; background: #fffdf8; }
+		.proposal h2 { margin: 0 0 0.25rem; font-size: 1.35rem; }
+		.proposal > p { max-width: 75ch; margin: 0 0 1.25rem; color: #57534a; }
+		.row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 1rem; align-items: stretch; }
+		.tile { display: flex; align-items: center; justify-content: center; min-height: 9rem; padding: 1.5rem; border-radius: 12px; }
+		.light { background: #f6f4ee; --a: #0d6b63; --b: #9cc9bf; --ink: #1b1a17; color: #1b1a17; }
+		.dark { background: #141412; --a: #6fd1c3; --b: #2f6a61; --ink: #f1efe8; color: #f1efe8; }
+		.lockup { display: inline-flex; gap: 0.9rem; align-items: center; font-size: 1.9rem; font-weight: 800; letter-spacing: -0.02em; }
+		.lockup svg { width: 3.4rem; height: 3.4rem; }
+		.sizes { display: flex; gap: 1rem; align-items: center; padding: 1rem 1.25rem; border-radius: 12px; background: #f6f4ee; --a: #0d6b63; --b: #9cc9bf; --ink: #1b1a17; }
+		.sizes figure { display: grid; gap: 0.35rem; justify-items: center; margin: 0; font-size: 0.8rem; color: #57534a; }
+		.tab { display: flex; gap: 0.4rem; align-items: center; padding: 0.35rem 0.6rem; border-radius: 8px 8px 0 0; background: #dedbd2; font-size: 0.75rem; color: #1b1a17; }
+		.s64 { width: 64px; height: 64px; } .s32 { width: 32px; height: 32px; } .s16 { width: 16px; height: 16px; }
+		@media (max-width: 900px) { .row { grid-template-columns: 1fr; } }
+	</style>
+</head>
+<body>
+	<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+		<!-- A. Stack: the three layers of every skill, the top one in the accent. -->
+		<symbol id="stack" viewBox="0 0 64 64">
+			<rect x="6" y="9" width="46" height="13" rx="6.5" fill="var(--a)"/>
+			<rect x="12" y="26" width="46" height="13" rx="6.5" fill="var(--b)"/>
+			<rect x="7.5" y="44.5" width="43" height="10" rx="5" fill="none" stroke="var(--ink)" stroke-width="3"/>
+		</symbol>
+
+		<!-- B. Figure: the layers read as a person with open arms, the universal access sign. -->
+		<symbol id="figure" viewBox="0 0 64 64">
+			<circle cx="32" cy="11" r="7" fill="var(--a)"/>
+			<rect x="5" y="23" width="54" height="10" rx="5" fill="var(--a)"/>
+			<rect x="15" y="37" width="34" height="10" rx="5" fill="var(--b)"/>
+			<rect x="23" y="51" width="18" height="10" rx="5" fill="var(--ink)"/>
+		</symbol>
+
+		<!-- C. Hand: an open hand holding the layers; care and support, one gesture. -->
+		<symbol id="hand" viewBox="0 0 64 64">
+			<rect x="17" y="8" width="30" height="9" rx="4.5" fill="var(--a)"/>
+			<rect x="17" y="21" width="30" height="9" rx="4.5" fill="var(--b)"/>
+			<path d="M6 36v6c0 9 7 15 16 15h16c6 0 10-2 14-6l7-7c2.2-2.2-.8-5.6-3.4-3.8L48 45H34" fill="none" stroke="var(--ink)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M34 45h-9" fill="none" stroke="var(--ink)" stroke-width="4.5" stroke-linecap="round"/>
+		</symbol>
+	</svg>
+
+	<h1>Logo proposals</h1>
+	<p class="intro">Three marks for Accessibility Skills, each built on one idea. The name stays in plain words so screen readers and people read it the same way. Each is shown on the light and dark theme, and at 64, 32 and 16 px to check it survives as a favicon.</p>
+
+	<section class="proposal" aria-labelledby="a-title">
+		<h2 id="a-title">A · Stack</h2>
+		<p>The three layers every skill is made of: your patterns on top in the accent, your weak spots in the middle, the WCAG base underneath. It says exactly what the product does and stays clear at any size.</p>
+		<div class="row">
+			<div class="tile light"><span class="lockup"><svg aria-hidden="true"><use href="#stack"/></svg>Accessibility Skills</span></div>
+			<div class="tile dark"><span class="lockup"><svg aria-hidden="true"><use href="#stack"/></svg>Accessibility Skills</span></div>
+			<div class="sizes">
+				<figure><svg class="s64" aria-hidden="true"><use href="#stack"/></svg>64</figure>
+				<figure><svg class="s32" aria-hidden="true"><use href="#stack"/></svg>32</figure>
+				<figure><span class="tab"><svg class="s16" aria-hidden="true"><use href="#stack"/></svg>Accessibility…</span>16</figure>
+			</div>
+		</div>
+	</section>
+
+	<section class="proposal" aria-labelledby="b-title">
+		<h2 id="b-title">B · Figure</h2>
+		<p>The same layers, arranged so they read as a person with open arms, an echo of the universal access sign. Human and recognisable as accessibility, while still built from the product's own shape.</p>
+		<div class="row">
+			<div class="tile light"><span class="lockup"><svg aria-hidden="true"><use href="#figure"/></svg>Accessibility Skills</span></div>
+			<div class="tile dark"><span class="lockup"><svg aria-hidden="true"><use href="#figure"/></svg>Accessibility Skills</span></div>
+			<div class="sizes">
+				<figure><svg class="s64" aria-hidden="true"><use href="#figure"/></svg>64</figure>
+				<figure><svg class="s32" aria-hidden="true"><use href="#figure"/></svg>32</figure>
+				<figure><span class="tab"><svg class="s16" aria-hidden="true"><use href="#figure"/></svg>Accessibility…</span>16</figure>
+			</div>
+		</div>
+	</section>
+
+	<section class="proposal" aria-labelledby="c-title">
+		<h2 id="c-title">C · Hand</h2>
+		<p>Keeps the hand from your concept, the warmest idea in it, and drops the microphone, wave, gear and bolt. The hand holds two layers: care and support for the people the skill is for.</p>
+		<div class="row">
+			<div class="tile light"><span class="lockup"><svg aria-hidden="true"><use href="#hand"/></svg>Accessibility Skills</span></div>
+			<div class="tile dark"><span class="lockup"><svg aria-hidden="true"><use href="#hand"/></svg>Accessibility Skills</span></div>
+			<div class="sizes">
+				<figure><svg class="s64" aria-hidden="true"><use href="#hand"/></svg>64</figure>
+				<figure><svg class="s32" aria-hidden="true"><use href="#hand"/></svg>32</figure>
+				<figure><span class="tab"><svg class="s16" aria-hidden="true"><use href="#hand"/></svg>Accessibility…</span>16</figure>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
