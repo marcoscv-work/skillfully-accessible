@@ -5,7 +5,9 @@ const $ = (id) => document.getElementById(id);
 
 // ---------------------------------------------------------------- gallery
 
-const SOURCE_LABEL = {community: 'Community', internal: 'Internal', official: 'Official'};
+const SOURCE_LABEL = {community: 'Community', official: 'Official'};
+
+let activeTag = 'All';
 
 function renderGallery() {
 	const list = $('gallery-list');
@@ -17,12 +19,11 @@ function renderGallery() {
 		const description = document.createElement('p');
 		const tags = document.createElement('ul');
 		const action = document.createElement('p');
-
-		item.className = 'card';
-		heading.textContent = skill.name;
-
 		const badge = document.createElement('span');
 
+		item.className = 'card';
+		item.dataset.tags = skill.tags.join('|');
+		heading.textContent = skill.name;
 		badge.className = 'badge';
 		badge.textContent = SOURCE_LABEL[skill.source];
 		heading.append(badge);
@@ -40,33 +41,89 @@ function renderGallery() {
 			tags.append(li);
 		}
 
+		item.append(heading, by, description, tags);
+
+		if (skill.scripts) {
+			const warning = document.createElement('p');
+
+			warning.className = 'scripts';
+			warning.textContent = 'Includes scripts or fetches remote content. Read it before you install it.';
+			item.append(warning);
+		}
+
 		action.className = 'card-action';
 
-		if (skill.kind === 'builder') {
-			const link = document.createElement('a');
+		const link = document.createElement('a');
 
-			link.className = 'button';
+		link.className = 'button';
+
+		if (skill.kind === 'builder') {
 			link.href = '#build';
 			link.textContent = 'Start from it';
-			action.append(link);
-		}
-		else if (skill.kind === 'link') {
-			const link = document.createElement('a');
-
-			link.className = 'button';
-			link.href = skill.url;
-			link.textContent = 'View source';
-			link.setAttribute('aria-label', `View source of ${skill.name} (opens GitHub)`);
-			action.append(link);
 		}
 		else {
-			action.classList.add('note');
-			action.textContent = 'Nothing to download: an example of the recipe.';
+			link.href = skill.url;
+			link.textContent = 'View source';
+			link.setAttribute('aria-label', `View source of ${skill.name}`);
 		}
 
-		item.append(heading, by, description, tags, action);
+		action.append(link);
+		item.append(action);
 		list.append(item);
 	}
+
+	renderFilters();
+}
+
+// One tag at a time; "All" shows everything.
+
+function renderFilters() {
+	const counts = new Map();
+
+	for (const skill of SKILLS) {
+		for (const tag of skill.tags) {
+			counts.set(tag, (counts.get(tag) || 0) + 1);
+		}
+	}
+
+	const tags = ['All', ...[...counts.keys()].filter((tag) => counts.get(tag) > 1).sort()];
+	const bar = $('gallery-filters');
+
+	bar.parentElement.hidden = tags.length < 2;
+
+	for (const tag of tags) {
+		const button = document.createElement('button');
+
+		button.type = 'button';
+		button.className = 'chip';
+		button.textContent = tag;
+		button.setAttribute('aria-pressed', String(tag === activeTag));
+		button.addEventListener('click', () => {
+			activeTag = tag;
+
+			for (const other of bar.querySelectorAll('button')) {
+				other.setAttribute('aria-pressed', String(other === button));
+			}
+
+			filterGallery();
+		});
+		bar.append(button);
+	}
+
+	filterGallery();
+}
+
+function filterGallery() {
+	let shown = 0;
+
+	for (const card of document.querySelectorAll('#gallery-list .card')) {
+		const match = activeTag === 'All' || card.dataset.tags.split('|').includes(activeTag);
+
+		card.hidden = !match;
+		shown += match ? 1 : 0;
+	}
+
+	$('gallery-count').textContent = activeTag === 'All' ? `${shown} skills.` : `${shown} skill${shown === 1 ? '' : 's'} tagged ${activeTag}.`;
 }
 
 // ---------------------------------------------------------------- criteria

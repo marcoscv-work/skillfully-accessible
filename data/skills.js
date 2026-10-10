@@ -1,8 +1,9 @@
 // The gallery. To share a skill, add an entry and open a pull request.
 //
-// kind: 'link' points to a skill published elsewhere; 'builder' opens the builder on this site;
-// 'case' is a story about how a team does it, with nothing to download.
-// source: 'official' (published by the tool's maker), 'community', or 'internal'.
+// kind: 'link' points to a skill published elsewhere; 'builder' opens the builder on this site.
+// source: 'official' (published by the tool or platform maker) or 'community'.
+// scripts: true when the skill bundles scripts or fetches remote content, so people know to read
+// it before installing.
 
 export const SKILLS = [
 	{
@@ -12,14 +13,6 @@ export const SKILLS = [
 		source: 'official',
 		description: 'All 55 Level A and AA success criteria, each with what to check in code. The starting point of every skill made here.',
 		tags: ['WCAG 2.2', 'Baseline'],
-	},
-	{
-		kind: 'case',
-		name: 'How Liferay does it',
-		author: 'Liferay',
-		source: 'internal',
-		description: 'Liferay\'s skill joins three layers: a generic WCAG base, the weak spots found in its own audits, and the patterns from its accessibility documentation. The patterns are what make every team build the same way. The skill itself is internal; this builder follows the same recipe.',
-		tags: ['Case study', 'Design system'],
 	},
 	{
 		kind: 'link',

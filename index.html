@@ -68,6 +68,11 @@
 			<div class="wrap">
 				<h2 id="gallery-title">Gallery</h2>
 				<p class="section-lead">Useful accessibility skills. Skills made on this site are plain text and run no code. Skills published elsewhere may include scripts: read them before you install them.</p>
+				<div class="filters" role="group" aria-labelledby="filter-label">
+					<span id="filter-label">Show</span>
+					<div id="gallery-filters" class="chips"></div>
+				</div>
+				<p class="count" id="gallery-count" role="status"></p>
 				<ul class="cards" id="gallery-list"></ul>
 				<p class="share">Know a good one? Add it to <code>data/skills.js</code> and open a pull request.</p>
 			</div>
