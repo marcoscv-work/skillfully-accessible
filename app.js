@@ -32,6 +32,10 @@ function renderGallery() {
 		source.className = 'source';
 		source.textContent = SOURCE_LABEL[skill.source];
 		by.append(source);
+
+		if (skill.license) {
+			by.append(` · ${skill.license === 'None' ? 'No license' : `${skill.license} license`}`);
+		}
 		description.textContent = skill.description;
 		tags.className = 'tags';
 		tags.setAttribute('aria-label', 'Tags');
