@@ -512,6 +512,39 @@ for (const link of document.querySelectorAll('a[href="#build"]')) {
 	link.addEventListener('click', () => requestAnimationFrame(() => $('build-title').focus({preventScroll: true})));
 }
 
+// Theme switch: Auto follows the system; Light and Dark are remembered in this browser.
+
+function applyTheme(choice) {
+	if (choice === 'auto') {
+		delete document.documentElement.dataset.theme;
+	}
+	else {
+		document.documentElement.dataset.theme = choice;
+	}
+
+	for (const button of document.querySelectorAll('[data-theme-choice]')) {
+		button.setAttribute('aria-pressed', String(button.dataset.themeChoice === choice));
+	}
+
+	try {
+		if (choice === 'auto') {
+			localStorage.removeItem('theme');
+		}
+		else {
+			localStorage.setItem('theme', choice);
+		}
+	}
+	catch {
+		// Storage can be blocked; the theme still applies for this visit.
+	}
+}
+
+applyTheme(document.documentElement.dataset.theme || 'auto');
+
+for (const button of document.querySelectorAll('[data-theme-choice]')) {
+	button.addEventListener('click', () => applyTheme(button.dataset.themeChoice));
+}
+
 // The menu marks the section on screen.
 
 const navLinks = [...document.querySelectorAll('nav a')];
