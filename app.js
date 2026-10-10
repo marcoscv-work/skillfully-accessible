@@ -19,18 +19,19 @@ function renderGallery() {
 		const description = document.createElement('p');
 		const tags = document.createElement('ul');
 		const action = document.createElement('p');
-		const badge = document.createElement('span');
 
 		item.className = 'card';
 		item.dataset.tags = skill.tags.join('|');
 		item.dataset.search = [skill.name, skill.author, skill.description, ...skill.tags].join(' ').toLowerCase();
 		heading.textContent = skill.name;
-		badge.className = 'badge';
-		badge.textContent = SOURCE_LABEL[skill.source];
-		heading.append(badge);
+
+		const source = document.createElement('span');
 
 		by.className = 'by';
-		by.textContent = `By ${skill.author}`;
+		by.textContent = `By ${skill.author} · `;
+		source.className = 'source';
+		source.textContent = SOURCE_LABEL[skill.source];
+		by.append(source);
 		description.textContent = skill.description;
 		tags.className = 'tags';
 		tags.setAttribute('aria-label', 'Tags');
@@ -48,7 +49,8 @@ function renderGallery() {
 			const warning = document.createElement('p');
 
 			warning.className = 'scripts';
-			warning.textContent = 'Includes scripts or fetches remote content. Read it before you install it.';
+			warning.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17.5v.01"/></svg>';
+			warning.append('Includes scripts or fetches remote content. Read it before you install it.');
 			item.append(warning);
 		}
 
@@ -504,6 +506,28 @@ $('builder').addEventListener('submit', (event) => event.preventDefault());
 
 for (const link of document.querySelectorAll('a[href="#build"]')) {
 	link.addEventListener('click', () => requestAnimationFrame(() => $('build-title').focus({preventScroll: true})));
+}
+
+// The menu marks the section on screen.
+
+const navLinks = [...document.querySelectorAll('nav a')];
+const spy = new IntersectionObserver((entries) => {
+	for (const entry of entries.filter((e) => e.isIntersecting)) {
+		for (const link of navLinks) {
+			if (link.getAttribute('href') === `#${entry.target.id}`) {
+				link.setAttribute('aria-current', 'location');
+			}
+			else {
+				link.removeAttribute('aria-current');
+			}
+		}
+	}
+}, {rootMargin: '-45% 0px -50% 0px'});
+
+// The hero is watched too, so scrolling back up clears the mark.
+
+for (const section of [$('top'), ...navLinks.map((link) => document.querySelector(link.getAttribute('href')))]) {
+	spy.observe(section);
 }
 
 update();
