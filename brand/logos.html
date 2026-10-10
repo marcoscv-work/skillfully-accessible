@@ -23,6 +23,8 @@
 		.sizes figure { display: grid; gap: 0.35rem; justify-items: center; margin: 0; font-size: 0.8rem; color: #57534a; }
 		.tab { display: flex; gap: 0.4rem; align-items: center; padding: 0.35rem 0.6rem; border-radius: 8px 8px 0 0; background: #dedbd2; font-size: 0.75rem; color: #1b1a17; }
 		.s64 { width: 64px; height: 64px; } .s32 { width: 32px; height: 32px; } .s16 { width: 16px; height: 16px; }
+		.variant + .variant { margin-top: 1.5rem; }
+		.variant h3 { margin: 0 0 0.75rem; font-size: 1.05rem; }
 		@media (max-width: 900px) { .row { grid-template-columns: 1fr; } }
 	</style>
 </head>
@@ -41,6 +43,29 @@
 			<rect x="5" y="23" width="54" height="10" rx="5" fill="var(--a)"/>
 			<rect x="15" y="37" width="34" height="10" rx="5" fill="var(--b)"/>
 			<rect x="23" y="51" width="18" height="10" rx="5" fill="var(--ink)"/>
+		</symbol>
+
+		<!-- B iterations: legs as two bars on the same line. -->
+		<symbol id="figure1" viewBox="0 0 64 64">
+			<circle cx="32" cy="10" r="6.5" fill="var(--a)"/>
+			<rect x="5" y="20" width="54" height="9" rx="4.5" fill="var(--a)"/>
+			<rect x="19" y="33" width="26" height="9" rx="4.5" fill="var(--b)"/>
+			<rect x="19" y="46" width="11" height="9" rx="4.5" fill="var(--ink)"/>
+			<rect x="34" y="46" width="11" height="9" rx="4.5" fill="var(--ink)"/>
+		</symbol>
+		<symbol id="figure2" viewBox="0 0 64 64">
+			<circle cx="32" cy="10" r="6.5" fill="var(--a)"/>
+			<rect x="5" y="20" width="54" height="9" rx="4.5" fill="var(--a)"/>
+			<rect x="22" y="33" width="20" height="9" rx="4.5" fill="var(--b)"/>
+			<rect x="12" y="46" width="16" height="9" rx="4.5" fill="var(--ink)"/>
+			<rect x="36" y="46" width="16" height="9" rx="4.5" fill="var(--ink)"/>
+		</symbol>
+		<symbol id="figure3" viewBox="0 0 64 64">
+			<circle cx="32" cy="9" r="7" fill="var(--a)"/>
+			<rect x="4" y="21" width="56" height="10" rx="5" fill="var(--a)"/>
+			<rect x="21" y="35" width="22" height="10" rx="5" fill="var(--b)"/>
+			<rect x="15" y="49" width="14" height="10" rx="5" fill="var(--ink)" transform="rotate(-12 22 54)"/>
+			<rect x="35" y="49" width="14" height="10" rx="5" fill="var(--ink)" transform="rotate(12 42 54)"/>
 		</symbol>
 
 		<!-- C. Hand: an open hand holding the layers; care and support, one gesture. -->
@@ -81,6 +106,47 @@
 				<figure><span class="tab"><svg class="s16" aria-hidden="true"><use href="#figure"/></svg>Accessibility…</span>16</figure>
 			</div>
 		</div>
+	</section>
+
+	<section class="proposal" aria-labelledby="b2-title">
+		<h2 id="b2-title">B · Figure, with legs</h2>
+		<p>The layers stay horizontal; the bottom one splits into two legs on the same line, so the figure reads as a person at a glance.</p>
+			<div class="variant">
+				<h3>B1 · Legs together: arms, body and two legs</h3>
+				<div class="row">
+					<div class="tile light"><span class="lockup"><svg aria-hidden="true"><use href="#figure1"/></svg>Accessibility Skills</span></div>
+					<div class="tile dark"><span class="lockup"><svg aria-hidden="true"><use href="#figure1"/></svg>Accessibility Skills</span></div>
+					<div class="sizes">
+						<figure><svg class="s64" aria-hidden="true"><use href="#figure1"/></svg>64</figure>
+						<figure><svg class="s32" aria-hidden="true"><use href="#figure1"/></svg>32</figure>
+						<figure><span class="tab"><svg class="s16" aria-hidden="true"><use href="#figure1"/></svg>Accessibility…</span>16</figure>
+					</div>
+				</div>
+			</div>
+			<div class="variant">
+				<h3>B2 · Wide stance: a narrower body, legs apart</h3>
+				<div class="row">
+					<div class="tile light"><span class="lockup"><svg aria-hidden="true"><use href="#figure2"/></svg>Accessibility Skills</span></div>
+					<div class="tile dark"><span class="lockup"><svg aria-hidden="true"><use href="#figure2"/></svg>Accessibility Skills</span></div>
+					<div class="sizes">
+						<figure><svg class="s64" aria-hidden="true"><use href="#figure2"/></svg>64</figure>
+						<figure><svg class="s32" aria-hidden="true"><use href="#figure2"/></svg>32</figure>
+						<figure><span class="tab"><svg class="s16" aria-hidden="true"><use href="#figure2"/></svg>Accessibility…</span>16</figure>
+					</div>
+				</div>
+			</div>
+			<div class="variant">
+				<h3>B3 · Walking out: legs angled, the most like the access sign</h3>
+				<div class="row">
+					<div class="tile light"><span class="lockup"><svg aria-hidden="true"><use href="#figure3"/></svg>Accessibility Skills</span></div>
+					<div class="tile dark"><span class="lockup"><svg aria-hidden="true"><use href="#figure3"/></svg>Accessibility Skills</span></div>
+					<div class="sizes">
+						<figure><svg class="s64" aria-hidden="true"><use href="#figure3"/></svg>64</figure>
+						<figure><svg class="s32" aria-hidden="true"><use href="#figure3"/></svg>32</figure>
+						<figure><span class="tab"><svg class="s16" aria-hidden="true"><use href="#figure3"/></svg>Accessibility…</span>16</figure>
+					</div>
+				</div>
+			</div>
 	</section>
 
 	<section class="proposal" aria-labelledby="c-title">
