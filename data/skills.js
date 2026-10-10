@@ -39,13 +39,4 @@ export const SKILLS = [
 		description: 'Fixes common problems in UI code: ARIA, keyboard support, focus, contrast and form errors.',
 		tags: ['Fix', 'Code'],
 	},
-	{
-		kind: 'link',
-		name: 'Animation skills',
-		author: 'Emil Kowalski',
-		source: 'community',
-		url: 'https://github.com/emilkowalski/skills',
-		description: 'Reviews and improves animations. Useful next to 2.2.2 Pause, Stop, Hide and reduced-motion work.',
-		tags: ['Motion', 'Code'],
-	},
 ];
