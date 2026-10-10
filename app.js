@@ -9,6 +9,12 @@ const SOURCE_LABEL = {community: 'Community', official: 'Official'};
 
 let activeTag = 'All';
 
+// Without a search or a tag, the gallery shows its first skills and a button for the rest, so the
+// page stays short on small screens.
+
+const PREVIEW = 6;
+let showAll = false;
+
 function renderGallery() {
 	const list = $('gallery-list');
 
@@ -128,9 +134,17 @@ function filterGallery() {
 		const words = query.split(/\s+/).filter(Boolean);
 		const match = (activeTag === 'All' || card.dataset.tags.split('|').includes(activeTag)) && words.every((word) => card.dataset.search.includes(word));
 
-		card.hidden = !match;
+		const narrowed = query || activeTag !== 'All';
+
+		card.hidden = !match || (!narrowed && !showAll && shown >= PREVIEW);
 		shown += match ? 1 : 0;
 	}
+
+	const more = $('gallery-more');
+	const hiding = !query && activeTag === 'All' && !showAll && shown > PREVIEW;
+
+	more.parentElement.hidden = !hiding;
+	more.textContent = `Show all ${shown} skills`;
 
 	const what = `${shown} skill${shown === 1 ? '' : 's'}`;
 	const tagged = activeTag === 'All' ? '' : ` tagged ${activeTag}`;
@@ -495,6 +509,17 @@ $('patterns').addEventListener('input', update);
 $('links').addEventListener('input', update);
 $('filter').addEventListener('input', applyFilter);
 $('gallery-search').addEventListener('input', filterGallery);
+$('gallery-more').addEventListener('click', () => {
+	showAll = true;
+	filterGallery();
+
+	// Focus moves to the first card that was hidden, so keyboard and screen reader users carry on there.
+
+	const next = document.querySelectorAll('#gallery-list .card')[PREVIEW];
+
+	next?.setAttribute('tabindex', '-1');
+	next?.focus();
+});
 $('paste-apply').addEventListener('click', applyPaste);
 $('paste').addEventListener('keydown', (event) => {
 	if (event.key === 'Enter') {

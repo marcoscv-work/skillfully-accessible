@@ -77,7 +77,7 @@
 
 html {
 	scroll-behavior: smooth;
-	scroll-padding-top: 5.5rem;
+	scroll-padding-top: var(--space-4);
 	scrollbar-color: var(--field-line) var(--bg);
 	-webkit-text-size-adjust: 100%;
 }
@@ -115,7 +115,7 @@ a:hover { text-decoration-thickness: 2px; }
 main:focus, h2:focus { outline: none; }
 
 code, pre { font-family: var(--mono); }
-code { font-size: 0.9em; }
+code { font-size: 0.9em; overflow-wrap: anywhere; }
 
 .wrap { width: min(1200px, 100% - 2.5rem); margin-inline: auto; }
 
@@ -135,12 +135,16 @@ code { font-size: 0.9em; }
 /* ---------------------------------------------------------------- header */
 
 .site-header {
-	position: sticky;
-	top: 0;
-	z-index: 5;
 	border-bottom: 1px solid var(--line);
 	background: color-mix(in srgb, var(--bg) 94%, transparent);
-	backdrop-filter: saturate(1.4) blur(10px);
+}
+
+/* The header only stays on screen when there is room for it. On small screens and when zoomed in
+   it scrolls away, so it never covers the content or the focused element. */
+
+@media (min-width: 900px) and (min-height: 640px) {
+	html { scroll-padding-top: 5.5rem; }
+	.site-header { position: sticky; top: 0; z-index: 5; backdrop-filter: saturate(1.4) blur(10px); }
 }
 
 .header-row { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); align-items: center; justify-content: space-between; min-height: 4.25rem; }
@@ -185,6 +189,24 @@ nav a[aria-current] { border-bottom-color: var(--accent); color: var(--ink); }
 }
 .theme button:hover { color: var(--ink); }
 .theme button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+/* Small screens: brand and theme on one line, the menu below. */
+
+@media (max-width: 899px) {
+	.header-row { display: grid; grid-template-areas: "brand theme" "nav nav"; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-2) var(--space-4); min-height: 0; padding-block: var(--space-3) var(--space-1); }
+	.header-tools { display: contents; }
+	.brand { grid-area: brand; }
+	.theme { grid-area: theme; }
+	.header-row nav { grid-area: nav; }
+	nav ul { gap: 0 var(--space-4); }
+	nav a { padding: var(--space-2) 0; }
+}
+
+@media (max-width: 400px) {
+	.brand { font-size: 1rem; }
+	.brand svg { width: 1.75rem; height: 1.75rem; }
+	.theme button { min-width: 0; padding-inline: 0.55rem; font-size: 0.82rem; }
+}
 
 /* ---------------------------------------------------------------- hero */
 
@@ -347,6 +369,9 @@ h3 { margin: 0; font-size: 1.2rem; font-weight: 700; line-height: 1.3; }
 .card .scripts svg { flex: none; width: 1.1rem; height: 1.1rem; margin-top: 0.15rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .card .card-action { margin-top: auto; padding-top: var(--space-3); }
 
+.more { margin: var(--space-6) 0 0; }
+.more[hidden] { display: none; }
+
 .share { margin: var(--space-8) 0 0; color: var(--muted); }
 
 /* ---------------------------------------------------------------- builder */
@@ -405,7 +430,7 @@ textarea { resize: vertical; }
 
 /* Output */
 
-.output { position: sticky; top: 5.5rem; display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-6); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+.output { position: sticky; top: 6.5rem; display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-6); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
 
 @media (max-width: 960px) {
 	.output { position: static; }
