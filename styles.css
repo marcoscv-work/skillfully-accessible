@@ -385,10 +385,64 @@ h3 { margin: 0; font-size: 1.2rem; font-weight: 700; line-height: 1.3; }
 	.builder { grid-template-columns: minmax(0, 1fr); }
 }
 
-.step { margin: 0 0 var(--space-4); padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-.step legend { float: left; width: 100%; margin-bottom: var(--space-4); padding: 0; font-size: 1.2rem; font-weight: 800; }
+.step { margin: 0 0 var(--space-6); padding: 0 var(--space-6) var(--space-2); overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+
+/* Each step opens with a band: a large number and the step's name, so the three read as a
+   sequence at a glance. */
+
+.step legend {
+	float: left;
+	display: flex;
+	gap: var(--space-4);
+	align-items: center;
+	width: calc(100% + 2 * var(--space-6));
+	margin: 0 calc(-1 * var(--space-6)) var(--space-6);
+	padding: var(--space-4) var(--space-6);
+	border-bottom: 1px solid var(--line);
+	background: var(--accent-soft);
+}
 .step legend + * { clear: both; }
-.step-n { display: inline-grid; place-items: center; width: 1.9rem; height: 1.9rem; margin-right: var(--space-2); border-radius: 50%; background: var(--ink); color: var(--bg); font-size: 0.95rem; font-weight: 800; }
+.step-n {
+	display: grid;
+	flex: none;
+	place-items: center;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 12px;
+	background: var(--accent);
+	color: var(--accent-ink);
+	font-size: 1.6rem;
+	font-weight: 800;
+	line-height: 1;
+}
+.step-title { display: grid; font-size: 1.35rem; font-weight: 800; line-height: 1.2; letter-spacing: -0.01em; }
+.step-of { color: var(--muted); font-size: 0.85rem; font-weight: 600; letter-spacing: 0; }
+
+/* The steps at the top of the builder: where you are going, and a shortcut to each. */
+
+.stepper { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2); margin: 0 0 var(--space-6); padding: 0; list-style: none; counter-reset: none; }
+.stepper a {
+	display: flex;
+	gap: var(--space-3);
+	align-items: center;
+	height: 100%;
+	padding: var(--space-3) var(--space-4);
+	border: 1px solid var(--line);
+	border-radius: 10px;
+	background: var(--surface);
+	color: var(--ink);
+	font-weight: 700;
+	text-decoration: none;
+	transition: border-color 160ms var(--ease);
+}
+.stepper a:hover { border-color: var(--accent); }
+.stepper-n { display: grid; flex: none; place-items: center; width: 2rem; height: 2rem; border-radius: 8px; background: var(--accent); color: var(--accent-ink); font-weight: 800; }
+
+/* On narrow screens the steps follow straight below, so the shortcuts would only repeat them. */
+
+@media (max-width: 640px) {
+	.stepper { display: none; }
+}
 
 .field { margin: 0 0 var(--space-4); }
 .field label { display: block; margin-bottom: var(--space-1); font-weight: 700; }
