@@ -1,4 +1,4 @@
-# Accessibility Skills
+# Skillfully Accessible
 
 Accessibility skills for AI coding assistants, and a builder to make your own.
 
@@ -26,4 +26,4 @@ Then open http://localhost:8778.
 
 ## Publish
 
-Enable GitHub Pages for the repository (Settings, Pages, deploy from the `main` branch, root folder).
+The site is published with GitHub Pages from the `main` branch, root folder: https://marcoscv-work.github.io/skillfully-accessible/
