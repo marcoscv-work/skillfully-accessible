@@ -27,3 +27,7 @@ Then open http://localhost:8778.
 ## Publish
 
 The site is published with GitHub Pages from the `main` branch, root folder: https://marcoscv-work.github.io/skillfully-accessible/
+
+## License
+
+MIT. See [LICENSE](LICENSE). Skills listed in the gallery keep their own licenses, shown on each card.
